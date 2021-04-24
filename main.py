@@ -11,6 +11,7 @@ class Piece:
         self.empty = empty
         self.rec = None
         self.click = False
+        self.moved = False
 
 
 def main():
@@ -85,8 +86,8 @@ def main():
             elif event.type == pygame.MOUSEBUTTONUP:
                 a2, x2, y2 = paint.get_mouse_sqr(screen)
                 clicked = False
-        if a1 != None and a2 != None:
-            if a1 != a2 and current_pos[a1].empty is not True:
+        if a1 is not None and a2 is not None:
+            if a1 != a2 and current_pos[a1].empty is False and chess.legal(a1, a2, current_pos):
                 current_pos[a2] = current_pos[a1]
                 current_pos[a1] = Piece()
             a1, a2, x1, x2, y1, y2 = None, None, None, None, None, None
